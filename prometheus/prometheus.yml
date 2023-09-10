@@ -37,3 +37,18 @@ scrape_configs:
   - job_name: 'mktxp'
     static_configs:
       - targets: ['mktxp:49090']
+
+  - job_name: tx2s
+    honor_timestamps: true
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    metrics_path: /metrics
+    scheme: http
+    follow_redirects: true
+    enable_http2: true
+    static_configs:
+    - targets:
+      - tx2-primary.local:9100
+      - tx2-secondary.local:9100
+      - tx2-tertiary.local:9100
+      - tx2-quaternary.local:9100

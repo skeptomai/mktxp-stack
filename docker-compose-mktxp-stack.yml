@@ -12,7 +12,7 @@ services:
       - './mktxp/:/root/mktxp/'
     networks:
       mktxp: null
-    restart: unless-stopped  
+    restart: unless-stopped
 
   grafana:
     container_name: grafana
