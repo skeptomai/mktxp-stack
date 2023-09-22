@@ -104,3 +104,13 @@ services:
     volumes:
     - ./syslog-ng/syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf:ro
 
+  ping_exporter:
+    container_name: ping_exporter
+    image: czerwonk/ping_exporter:latest
+    ports:
+      - protocol: tcp
+        published: 9427
+        target: 9427
+    restart: always
+    volumes:
+    - ./ping_exporter:/config:ro
