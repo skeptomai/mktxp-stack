@@ -61,3 +61,12 @@ scrape_configs:
     static_configs:
     - targets:
       - cb-dell.local:9427
+
+  - job_name: 'truenas-graphite'
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    scheme: http
+    metrics_path: /metrics
+    static_configs:
+    - targets:
+      - cb-dell.local:9108

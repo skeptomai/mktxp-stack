@@ -108,9 +108,26 @@ services:
     container_name: ping_exporter
     image: czerwonk/ping_exporter:latest
     ports:
-      - protocol: tcp
-        published: 9427
-        target: 9427
+    - protocol: tcp
+      published: 9427
+      target: 9427
     restart: always
     volumes:
     - ./ping_exporter:/config:ro
+
+  graphite-exporter:
+    command:
+    -  --graphite.mapping-config=/tmp/graphite-exporter.yml
+    -  --graphite.listen-address=:2003
+    container_name: graphite-exporter
+    image: prom/graphite-exporter:latest
+    ports:
+    - protocol: tcp
+      published: 9108
+      target: 9108
+    - protocol: udp
+      published: 2003
+      target: 2003
+    restart: always
+    volumes:
+    - ./graphite-exporter/graphite-exporter.yml:/tmp/graphite-exporter.yml:ro
