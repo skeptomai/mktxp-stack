@@ -2,6 +2,7 @@
 
 * [MKTXP Stack](https://github.com/akpw/mktxp-stack)
 * [Graphite Exporter (from TrueNAS to Prometheus)](https://github.com/prometheus/graphite_exporter)
+* [TrueNAS Grafana](https://github.com/mazay/truenas-grafana)
 * [Syslog relay for Loki](https://alexandre.deverteuil.net/post/syslog-relay-for-loki/)
 * [Monitoring TrueNAS with Prom & Loki](https://alexandre.deverteuil.net/post/monitoring-truenas-with-prometheus-and-loki/)
 * [FreeNAS MIB](https://mibs.observium.org/mib/FREENAS-MIB/)
