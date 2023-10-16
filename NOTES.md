@@ -33,3 +33,37 @@
             -v ${PWD}/graphite-exporter/graphite-exporter.yml:/tmp/graphite-exporter.yml \
             prom/graphite-exporter --graphite.mapping-config=/tmp/graphite-exporter.yml --graphite.listen-address=:2003
     ```
+
+ ## Getting TrueNAS to resolve avahi (mDNS) hosts
+
+ [Debugging mDNS/Avahi on TrueNAS](https://blog.arrogantrabbit.com/net/freebsd/debugging-avahi-truenas/)
+
+ ```
+ If you are trying to debug mDNS/Avahi on TrueNAS Core and stumble on this misleading Failed to create client object: Daemon not running, and web search leads nowhere?
+
+$ avahi-resolve -vn obsidian.local
+Failed to create client object: Daemon not running
+The solution is obscenely simple: in /usr/local/etc/avahi/avahi-daemon.conf turn dbus back on:
+
+[server]
+# ...
+enable-dbus=yes
+and restart the daemon:
+
+$ service avahi-daemon restart
+Stopping avahi-daemon.
+Starting avahi-daemon.
+After that, avahi tools will working:
+
+$ avahi-resolve -vn obsidian.local
+Server version: avahi 0.8; Host name: truenas.local
+obsidian.local	10.0.50.95
+ ```
+
+
+## Working on add'l Grafana queries
+
+```
+(1 - mktxp_system_free_memory{routerboard_name="$node"} / mktxp_system_total_memory{routerboard_name="$node"})*100
+```
+
