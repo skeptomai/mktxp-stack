@@ -68,6 +68,18 @@ services:
     volumes:
     - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
 
+  alertmanager:
+    container_name: alertmanager
+    image: bitnami/alertmanager:latest
+    networks:
+      mktxp: null
+    ports:
+    - published: 9093
+      target: 9093
+    restart: always
+    volumes:
+    - ./alertmanager/alertmanager.yml:/opt/bitnami/alertmanager/conf/config.yml:ro
+
   promtail:
     command: -config.file=/etc/promtail/promtail-config.yml
     container_name: promtail
