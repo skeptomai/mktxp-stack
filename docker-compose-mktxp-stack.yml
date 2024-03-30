@@ -38,9 +38,7 @@ services:
     - ./grafana/dashboards:/var/lib/grafana/dashboards
 
   loki:
-    command: -config.file=/etc/loki/loki-config.yml
-    container_name: loki
-    image: grafana/loki:2.3.0
+    image: grafana/loki:latest
     networks:
       mktxp: null
     ports:
@@ -49,7 +47,7 @@ services:
       target: 3100
     restart: always
     volumes:
-    - ./loki/loki-config.yml:/etc/loki/loki-config.yml
+    - ./loki/loki-config.yml:/etc/loki/loki-local-config.yml
 
   prometheus:
     command:
@@ -58,7 +56,7 @@ services:
     - --web.enable-admin-api
     - --web.enable-lifecycle
     container_name: prometheus
-    image: prom/prometheus:latest
+    image: bitnami/prometheus:latest
     networks:
       mktxp: null
     ports:
@@ -83,7 +81,7 @@ services:
   promtail:
     command: -config.file=/etc/promtail/promtail-config.yml
     container_name: promtail
-    image: grafana/promtail:2.3.0
+    image: grafana/promtail:latest
     networks:
       mktxp: null
     ports:
